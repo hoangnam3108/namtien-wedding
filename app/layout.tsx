@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display, Lora, Great_Vibes } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+const lora = Lora({ subsets: ["latin"], variable: "--font-lora" });
+const greatVibes = Great_Vibes({ weight: "400", subsets: ["latin"], variable: "--font-great-vibes" });
 
 export const metadata: Metadata = {
-  title: "Đám Cưới Nam & Tiên",
+  title: "The Wedding Of Nam & Tiên",
   description: "Trân trọng kính mời bạn đến tham dự lễ cưới của chúng tôi",
 };
 
@@ -24,12 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="vi"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${playfair.variable} ${lora.variable} ${greatVibes.variable} h-full antialiased`}
     >
-      {/* Đã thêm suppressHydrationWarning vào thẻ body để fix lỗi từ extension */}
-      <body suppressHydrationWarning className="min-h-full flex flex-col">
+      <body suppressHydrationWarning className="min-h-full flex flex-col font-serif">
         {children}
       </body>
     </html>
