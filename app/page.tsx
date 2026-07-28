@@ -151,7 +151,7 @@ export default function WeddingInvitation() {
   const handleAddCalendar = () => {
     const startDate = '20260920T095000Z'; // 16:50 VN (UTC+7)
     const endDate = '20260920T140000Z';   // 21:00 VN
-    const title = 'Đám Cưới Nam & Tiên';
+    const title = 'NAM & TIEN’S WEDDING';
     const description = 'Trân trọng kính mời quý khách đến chung vui cùng gia đình chúng tôi.';
     const location = WEDDING_CONFIG.event.addressText;
 
