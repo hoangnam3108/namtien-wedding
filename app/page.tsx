@@ -22,13 +22,14 @@ const WEDDING_CONFIG = {
     bank: { name: 'Vietcombank', accountNumber: '1012345678', accountHolder: 'TRAN THI MY TIEN', code: 'VCB' },
   },
   event: {
-    dateIso: '2026-09-20T16:50:00',
-    displayDate: '20 . 09 . 2026',
-    lunarDate: '10 Tháng 08 Năm Bính Ngọ',
+    dateIso: '2026-09-20T16:50:00', // Đã cập nhật đúng ngày 20/09/2026
+    displayDate: '20 . 09 . 2026', // Ngày dương lịch
+    lunarDate: '10 Tháng 08 Năm Bính Ngọ', // Ngày âm lịch: 10/08/2026
     displayTime: '16:50',
     mapIframeUrl: 'https://maps.google.com/maps?q=12.794806,108.436139&z=15&output=embed',
     addressText: 'Thôn Ninh Thanh 1, xã Ea Kar, tỉnh Đắk Lắk',
     bgAudioUrl: '/nhaccuoi.mp3',
+    locationName: 'Tư Gia Nhà Trai' // Đã bổ sung địa điểm tổ chức
   },
   timeline: [
     { date: '14 . 02 . 2020', title: 'Lần Đầu Gặp Gỡ', desc: 'Ánh mắt chạm nhau giữa phố đông, tình yêu bắt đầu từ những điều giản dị nhất.', img: '/story1.jpg', fallback: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc' },
@@ -361,22 +362,37 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
       </div>
 
       {/* ====================================================================
-          1. HERO SECTION (PARALLAX TỰ ĐỘNG CHẠY NHẠC KHI CUỘN)
+{/* ====================================================================
+          1. HERO SECTION (CẬP NHẬT NGÀY THÁNG SANG TRỌNG)
           ==================================================================== */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-10 pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920')] bg-cover bg-center bg-fixed opacity-[0.08]"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF7]/50 via-transparent to-[#FAFAF7] z-0"></div>
         
         <div className="text-center z-10 w-full max-w-4xl mx-auto mt-6">
+          {/* Ảnh Cô Dâu Chú Rể */}
           <div className="relative w-full max-w-[320px] md:max-w-[420px] aspect-[3/4] mx-auto mb-12 reveal-on-scroll reveal-zoom delay-100 group">
              <div className="w-full h-full rounded-t-full overflow-hidden shadow-2xl border-[6px] border-white z-10 bg-white shine-effect">
                <img src={WEDDING_CONFIG.images.hero} onError={(e) => e.currentTarget.src = WEDDING_CONFIG.images.fallbackHero} className="w-full h-full object-cover transition-transform duration-[10000ms] group-hover:scale-110" alt="Nam & Tiên" />
              </div>
           </div>
+          
+          {/* Tên Cô Dâu Chú Rể */}
           <div className="flex flex-row items-center justify-center gap-3 md:gap-8 overflow-hidden w-full">
             <h1 className="reveal-on-scroll reveal-left delay-200 font-title text-4xl md:text-5xl lg:text-6xl text-[#4A4A4A] whitespace-nowrap">{WEDDING_CONFIG.groom.shortName}</h1>
             <span className="reveal-on-scroll reveal-zoom delay-300 font-script text-3xl md:text-5xl text-[#B8A492]">&</span>
             <h1 className="reveal-on-scroll reveal-right delay-200 font-title text-4xl md:text-5xl lg:text-6xl text-[#4A4A4A] whitespace-nowrap">{WEDDING_CONFIG.bride.shortName}</h1>
+          </div>
+
+          {/* Ngày Tháng Năm Nổi Bật (MỚI THÊM) */}
+          <div className="mt-8 flex flex-col items-center justify-center reveal-on-scroll reveal-up delay-400">
+            <div className="w-px h-12 bg-gradient-to-b from-transparent via-[#8C7A6B] to-[#8C7A6B] mb-4 opacity-50"></div>
+            <h2 className="font-title text-3xl md:text-4xl text-[#8C7A6B] tracking-[0.25em] ml-3">{WEDDING_CONFIG.event.displayDate}</h2>
+            <div className="flex items-center gap-4 mt-4">
+              <div className="h-[1px] w-8 md:w-16 bg-[#D4C3B3]"></div>
+              <p className="font-body text-[9px] md:text-[10px] tracking-widest text-[#A0A0A0] uppercase">Nhằm {WEDDING_CONFIG.event.lunarDate}</p>
+              <div className="h-[1px] w-8 md:w-16 bg-[#D4C3B3]"></div>
+            </div>
           </div>
         </div>
       </section>
@@ -494,31 +510,72 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
       </section>
 
       {/* ====================================================================
-          6. BẢN ĐỒ & DRESSCODE
+{/* ====================================================================
+          6. THỜI GIAN & ĐỊA ĐIỂM (TỐI GIẢN - SANG TRỌNG)
           ==================================================================== */}
-      <section className="py-24 px-4 max-w-6xl mx-auto overflow-hidden">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-4 flex flex-col gap-8 reveal-on-scroll reveal-left">
-             <div className="bg-[#4A4A4A] text-white p-8 rounded-2xl text-center shadow-2xl">
-                <h3 className="font-body text-xs tracking-[0.2em] uppercase mb-4 text-[#D4C3B3]">Dress Code</h3>
-                <p className="font-body text-xs text-gray-300 mb-6 leading-relaxed relative z-10">Trang phục gợi ý để khung hình thêm phần hoàn hảo.</p>
-                <div className="flex justify-center gap-4">
-                  {WEDDING_CONFIG.dressCodeColors.map((color, idx) => (
-                    <div key={idx} className="w-10 h-10 rounded-full border border-white/20" style={{ backgroundColor: color }} />
-                  ))}
-                </div>
-             </div>
-          </div>
-          <div className="lg:col-span-8 bg-white p-4 md:p-8 rounded-2xl border border-[#E8E2D9] shadow-lg reveal-on-scroll reveal-right delay-200 shine-effect">
-            <h2 className="font-script text-5xl text-[#8C7A6B] text-center mb-2">Địa Điểm</h2>
-            <p className="font-body text-center text-sm text-[#A0A0A0] mb-6">Tư Gia Nhà Trai - {WEDDING_CONFIG.event.displayTime}</p>
-            <div className="w-full aspect-square md:aspect-[16/9] bg-[#F5F2ED] rounded-xl overflow-hidden shadow-inner relative">
-              <iframe src={WEDDING_CONFIG.event.mapIframeUrl} className="absolute inset-0 w-full h-full" style={{ border: 0 }} allowFullScreen={false} loading="lazy" />
+      <section className="py-24 px-4 max-w-5xl mx-auto overflow-hidden">
+        
+        {/* Dress Code (Thu gọn lên trên để tập trung vào thiệp chính) */}
+        <div className="max-w-2xl mx-auto mb-12 reveal-on-scroll reveal-up">
+           <div className="bg-[#FAF8F5] p-6 rounded-2xl text-center border border-[#E8E2D9]">
+              <h3 className="font-body text-[10px] tracking-[0.3em] uppercase mb-3 text-[#8C7A6B]">Dress Code</h3>
+              <div className="flex justify-center gap-4">
+                {WEDDING_CONFIG.dressCodeColors.map((color, idx) => (
+                  <div key={idx} className="w-8 h-8 rounded-full border border-gray-200 shadow-sm" style={{ backgroundColor: color }} />
+                ))}
+              </div>
+           </div>
+        </div>
+
+        {/* Khung Thông Tin Lễ Cưới Căn Giữa */}
+        <div className="bg-white p-3 md:p-4 rounded-3xl border border-[#E8E2D9] shadow-xl reveal-on-scroll reveal-up">
+          <div className="border border-[#F0EBE1] rounded-2xl p-8 md:p-14 relative overflow-hidden bg-[#FAFAF7] flex flex-col items-center text-center">
+            
+            {/* Họa tiết trang trí tinh tế */}
+            <div className="text-[#D4C3B3] text-3xl mb-4 opacity-70">❦</div>
+            
+            {/* Tiêu đề */}
+            <h3 className="font-script text-5xl md:text-7xl text-[#8C7A6B] mb-2 leading-tight">Tư Gia Nhà Trai</h3>
+            <p className="font-title text-xl md:text-2xl text-[#4A4A4A] tracking-widest uppercase mb-8">Lễ Tân Hôn</p>
+
+            {/* Cụm Thời gian & Địa chỉ liền mạch */}
+            <div className="flex flex-col items-center justify-center gap-2 mb-8">
+              <div className="inline-flex items-center justify-center gap-4 border-y border-[#E8E2D9] py-3 px-8">
+                 <span className="font-title text-base md:text-lg text-[#4A4A4A]">{WEDDING_CONFIG.event.displayTime}</span>
+                 <span className="w-1.5 h-1.5 bg-[#8C7A6B] rotate-45"></span>
+                 <span className="font-title text-base md:text-lg text-[#4A4A4A]">{WEDDING_CONFIG.event.displayDate}</span>
+              </div>
             </div>
+
+            <p className="font-body text-[#606060] text-sm md:text-base leading-relaxed mb-8 max-w-md">
+              {WEDDING_CONFIG.event.addressText}
+            </p>
+
+            {/* Nút bản đồ thanh lịch */}
+            <a 
+              href={`https://maps.google.com/maps?q=12.794806,108.436139`} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="group inline-flex items-center gap-2 bg-transparent border border-[#8C7A6B] text-[#8C7A6B] px-8 py-3 rounded-full font-body text-[10px] md:text-xs tracking-[0.2em] uppercase hover:bg-[#8C7A6B] hover:text-white transition-all duration-500 mb-10"
+            >
+              <span>Mở Google Maps</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+
+            {/* Bản đồ làm nhạt màu (Grayscale) để trông nghệ thuật hơn */}
+            <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-gray-100 rounded-xl overflow-hidden relative border border-[#E8E2D9]">
+              <iframe 
+                src={WEDDING_CONFIG.event.mapIframeUrl} 
+                className="absolute inset-0 w-full h-full grayscale-[50%] hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-700" 
+                style={{ border: 0 }} 
+                allowFullScreen={false} 
+                loading="lazy" 
+              />
+            </div>
+            
           </div>
         </div>
       </section>
-
       {/* ====================================================================
           7. XÁC NHẬN THAM DỰ (THUẦN VIỆT, RÕ RÀNG)
           ==================================================================== */}
